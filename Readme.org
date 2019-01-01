@@ -6,40 +6,51 @@
 [[https://travis-ci.org/conao3/leaf.el][https://img.shields.io/travis/conao3/leaf.el/master.svg?style=flat-square]]
 [[https://github.com/conao3/leaf.el][https://img.shields.io/github/license/conao3/leaf.el.svg?style=flat-square]]
 
-- [[What is it?]]
-- [[How to use?]]
-- [[Syntaxes]]
-  - [[Basic keywords]]
-    - [[none (keyword)]]
-    - [[:require keyword]]
-    - [[:ensure keyword]]
-    - [[:defaults keyword]]
-  - [[Configuration keywords]]
-    - [[:init keyword]]
-    - [[:commands keyward]]
-    - [[:hook keyword]]
-    - [[:mode, :interpreter keyword]]
-    - [[:magic :magic-fallback keyword]]
-    - [[:bind, :bind* keyword]]
-    - [[:pre-setq :setq keyword]]
-    - [[:setq-default :custom keyword]]
-    - [[:custom-face keyword]]
-    - [[:load-path keyword]]
-    - [[:config keyword]]
-  - [[Condition keywords]]
-    - [[:disabled keyword]]
-    - [[:if, :when, :unless keyword]]
-  - [[Byte compile keywords]]
-    - [[:byte-compile-funcs, vars keywords]]
-  - [[Documentation keywords]]
-- [[Developer information]]
-  - [[leaf.el mechanism]]
-  - [[Adding custom keyword(s)]]
-- [[Why We support Emacs-22?]]
-- [[Welcome PR]]
-- [[Special Thanks]]
+- [[#F3A263DD-5AAD-472F-A0C0-1EA786592414][What is it?]]
+- [[#59115AE6-787A-4CD4-8406-F54CA6CF88FA][How to use?]]
+- [[#658565D4-1F5B-499B-A75F-A320D55BB512][Syntaxes]]
+  - [[#D882B509-5F21-4256-A7F8-9A59464689BE][Basic keywords]]
+    - [[#0FB96CC0-6010-4F06-8395-06E8DD28CDB0][none (keyword)]]
+    - [[#24ECA818-0278-448E-BA2C-92CEC7E00DF7][:require keyword]]
+    - [[#E1C4AE04-D595-4D8B-BB9E-93E8C4F5FFC5][:ensure keyword]]
+    - [[#2E91C76F-BDB1-49EF-A26F-E5C8715000F6][:defaults keyword]]
+  - [[#3B8EDE06-B263-4A08-AB4E-B5305417471A][Configuration keywords]]
+    - [[#3362981E-CF81-465A-953E-606FC067941A][:init keyword]]
+    - [[#753E1D75-CC46-4428-9961-7BCE3DD5BDA3][:commands keyward]]
+    - [[#4D639993-2FC7-4AB7-9834-15E5BAAA5E56][:hook keyword]]
+    - [[#E74DF3E7-A8C3-4BB2-9BC5-F3C77BD32378][:mode, :interpreter keyword]]
+    - [[#92056B6B-D504-4759-9399-C417E3DA5BA7][:magic, :magic-fallback keyword]]
+    - [[#D52D5002-2550-4AB2-9198-27464447BB4C][:bind, :bind* keyword]]
+    - [[#D5298BD4-6724-4D3A-932F-50A845F51D96][:pre-setq, :setq keyword]]
+    - [[#5C7F02BB-1CBF-48A9-916D-9792A2C3815F][:setq-default, :custom keyword]]
+    - [[#F77582D3-F6D8-43E9-98D2-748227AC19B1][:custom-face keyword]]
+    - [[#5EF5D2A6-FDA6-4A57-873D-1E2A63EFD0BC][:load-path keyword]]
+    - [[#390B5A74-6FD1-45AF-809B-AF8ACD35D40D][:config keyword]]
+  - [[#601B40F8-E41C-4DF2-94E0-22059D2F0AEE][Condition keywords]]
+    - [[#FB78E91B-A83E-4435-98A5-06A88BD2B58D][:disabled keyword]]
+    - [[#19A9FBE7-3F00-4CDF-A3DA-73B7140EC566][:if, :when, :unless keyword]]
+  - [[#FCA0C2E6-21C6-475C-AEA7-272649A21CE0][Byte compile keywords]]
+    - [[#2889E811-A291-47F7-B714-FABE4034D240][:byte-compile-funcs, :byte-compile-vars keyword]]
+  - [[#AEB3D9C7-C27A-4C0D-B7CA-8E3929A18C46][Documentation keywords]]
+- [[#091E1E16-C805-4EFC-B3DF-8CFFEF262016][Developer information]]
+  - [[#ECE81F64-86A4-41E2-921B-7BC8C0088C04][leaf.el mechanism]]
+    - [[#BC5DC943-58E0-40DC-9CF5-43521E990E7C][leaf (name &rest args) macro]]
+    - [[#95158ACD-2622-4DC4-804D-366CC1DE240C][leaf-core (name args) function]]
+      - [[#6A42C4A3-DD34-45A8-9D6D-D51985000CAC][leaf-append-defaults (plist) function]]
+      - [[#ADCDCD51-44E1-4D1B-AE7F-EA04743EFD25][leaf-normalize-plist (plsit mergep) function]]
+      - [[#A875F061-194B-4CAC-B124-923533DC6529][leaf-sort-values-plist (plist) function]]
+    - [[#F4C1ECC9-1004-471F-8C82-BB33A21A0863][leaf-pcocess-keywords (name plist) function]]
+  - [[#7CFD0D29-9E59-4726-B8BC-17A8042075BC][Adding custom keyword(s)]]
+    - [[#1C8BA8F9-AF24-490B-9E36-8D0985014D12][Add keyword(s)]]
+    - [[#F2358E14-FC68-4E06-9B19-781C0A8B7766][Define handler]]
+- [[#773EEC5D-AE59-4BD9-ABC9-BE3540BAD0DC][Why We support Emacs-22?]]
+- [[#472A6387-7B54-4ED4-8C39-21E291C7D990][Welcome PR]]
+- [[#16502214-F943-4A31-ABB4-217AC14FCE53][Special Thanks]]
 
 * What is it?
+:PROPERTIES:
+:ID:       F3A263DD-5AAD-472F-A0C0-1EA786592414
+:END:
 ~leaf.el~ is yet another [[https://github.com/jwiegley/use-package][use-package]].
 
 ~leaf.el~ has strong conditional branching symbols, 
@@ -50,6 +61,9 @@ It operates from Emacs-22, obtains partner [[https://github.com/conao3/feather.e
 You do not have to worry about errors due to reinstallation or environmental differences.
 
 * How to use?
+:PROPERTIES:
+:ID:       59115AE6-787A-4CD4-8406-F54CA6CF88FA
+:END:
 Put ~leaf.el~ at any folder added ~load-path~.
 Then ~(require 'leaf)~ and use like ~use-pacakge~
 
@@ -74,6 +88,9 @@ Then ~(require 'leaf)~ and use like ~use-pacakge~
   (leaf bind-key :ensure t)
 #+END_SRC
 * Syntaxes
+:PROPERTIES:
+:ID:       658565D4-1F5B-499B-A75F-A320D55BB512
+:END:
 All below examples are excerpts from ~leaf-tests.el~.
 
 These examples are defined in the following format.
@@ -97,7 +114,13 @@ We expect FORM will be expanded to EXPECT.
 #+end_src
 
 ** Basic keywords
+:PROPERTIES:
+:ID:       D882B509-5F21-4256-A7F8-9A59464689BE
+:END:
 *** none (keyword)
+:PROPERTIES:
+:ID:       0FB96CC0-6010-4F06-8395-06E8DD28CDB0
+:END:
 If ~leaf~ use without specifying any symbol, it simply works as a substitute for ~require~.
 #+begin_src emacs-lisp
   (cort-deftest leaf-test:/simple-none
@@ -108,6 +131,9 @@ If ~leaf~ use without specifying any symbol, it simply works as a substitute for
 #+end_src
 
 *** :require keyword
+:PROPERTIES:
+:ID:       24ECA818-0278-448E-BA2C-92CEC7E00DF7
+:END:
 ~leaf~ interprets that it is given default by ~:require t~.
 
 ~leaf~ do not ~require~ anything when ~nil~ is given, 
@@ -143,6 +169,9 @@ and if give multiple values it ~require~ each package.
 #+end_src
 
 *** :ensure keyword
+:PROPERTIES:
+:ID:       E1C4AE04-D595-4D8B-BB9E-93E8C4F5FFC5
+:END:
 ~:ensure~ provide package download, compile frontend for 
 package manager for example, ~feather.el~ and ~package.el~ etc...
 
@@ -174,6 +203,9 @@ completed before using ~:ensure~ keyword.
           (require 'foo)))))
 #+END_SRC
 *** :defaults keyword
+:PROPERTIES:
+:ID:       2E91C76F-BDB1-49EF-A26F-E5C8715000F6
+:END:
 ~:defalts~ provide to download default settings for specified package.
 For more detail, see [[https://github.com/conao3/leaf-defaults.git][leaf-defaults]].
 #+BEGIN_SRC emacs-lisp
@@ -187,7 +219,13 @@ For more detail, see [[https://github.com/conao3/leaf-defaults.git][leaf-default
           (require 'foo)))))
 #+END_SRC
 ** Configuration keywords
+:PROPERTIES:
+:ID:       3B8EDE06-B263-4A08-AB4E-B5305417471A
+:END:
 *** :init keyword
+:PROPERTIES:
+:ID:       3362981E-CF81-465A-953E-606FC067941A
+:END:
 ~:init~ keyword expect sexp will be evaluated before ~require~ package.
 
 #+begin_src emacs-lisp
@@ -205,7 +243,10 @@ For more detail, see [[https://github.com/conao3/leaf-defaults.git][leaf-default
           (require 'foo)))))
 #+end_src
 
-*** :commands keywards
+*** :commands keyward
+:PROPERTIES:
+:ID:       753E1D75-CC46-4428-9961-7BCE3DD5BDA3
+:END:
 ~:commands~ keyword define additional autoload commands.
 
 #+BEGIN_SRC emacs-lisp
@@ -229,6 +270,9 @@ For more detail, see [[https://github.com/conao3/leaf-defaults.git][leaf-default
 #+END_SRC
 
 *** :hook keyword
+:PROPERTIES:
+:ID:       4D639993-2FC7-4AB7-9834-15E5BAAA5E56
+:END:
 ~:hook~ keyword define ~add-hook~.
 
 #+BEGIN_SRC emacs-lisp
@@ -252,6 +296,9 @@ For more detail, see [[https://github.com/conao3/leaf-defaults.git][leaf-default
         (require 'ace-jump-mode))))
 #+END_SRC
 *** :mode, :interpreter keyword
+:PROPERTIES:
+:ID:       E74DF3E7-A8C3-4BB2-9BC5-F3C77BD32378
+:END:
 ~:mode~ keyword define ~auto-mode-alist~. When open file, enable major-mode.
 ~:interpreter~ keyword define ~interpreter-mode-alist~. enable major-mode by shebang.
 
@@ -291,7 +338,10 @@ If you want to specify major-mode, pass dotted pair value.
         (require 'ruby-mode))))
 #+END_SRC
 
-*** :magic :magic-fallback keyword
+*** :magic, :magic-fallback keyword
+:PROPERTIES:
+:ID:       92056B6B-D504-4759-9399-C417E3DA5BA7
+:END:
 ~:magic~ keyword define ~magic-mode-alist~. It is used to determine major-mode by
 binary header byte.
 ~:magic-fallback~  keyward also define ~magic-fallback-alist~
@@ -326,6 +376,9 @@ binary header byte.
       (pdf-tools-install))))
 #+END_SRC
 *** :bind, :bind* keyword
+:PROPERTIES:
+:ID:       D52D5002-2550-4AB2-9198-27464447BB4C
+:END:
 ~:bind~ provide ~bind-key.el~ frontend.
 
 You can customize backend to process ~:ensure~ keyword.
@@ -369,7 +422,10 @@ but it's easy to create other package manager's backend.
 Of course, setting and requiring of the backend itself must be
 completed before using ~:ensure~ keyword.
 
-*** :pre-setq :setq keyword
+*** :pre-setq, :setq keyword
+:PROPERTIES:
+:ID:       D5298BD4-6724-4D3A-932F-50A845F51D96
+:END:
 ~pre-setq~, ~post-setq~ to setq before and after ~require~ package.
 #+BEGIN_SRC emacs-lisp
   (cort-deftest leaf-test/:simple-pre-setq
@@ -402,7 +458,10 @@ completed before using ~:ensure~ keyword.
           (foo-post-init)))))
 #+END_SRC
 
-*** :setq-default :custom keyword
+*** :setq-default, :custom keyword
+:PROPERTIES:
+:ID:       5C7F02BB-1CBF-48A9-916D-9792A2C3815F
+:END:
 ~:setq-default~, ~:custom~ to itself after ~require~ package
 #+BEGIN_SRC emacs-lisp
   (cort-deftest leaf-test/:simple-post-setq
@@ -435,6 +494,9 @@ completed before using ~:ensure~ keyword.
 #+END_SRC
 
 *** :custom-face keyword
+:PROPERTIES:
+:ID:       F77582D3-F6D8-43E9-98D2-748227AC19B1
+:END:
 ~:custom-face~ keyword define custom-face by ~custom-set-faces~.
 
 #+BEGIN_SRC emacs-lisp
@@ -469,6 +531,9 @@ completed before using ~:ensure~ keyword.
 #+END_SRC
 
 *** :load-path keyword
+:PROPERTIES:
+:ID:       5EF5D2A6-FDA6-4A57-873D-1E2A63EFD0BC
+:END:
 ~:load-path~ keyword add loadpath located on ~user-setting-directory~.
 
 #+BEGIN_SRC emacs-lisp
@@ -492,6 +557,9 @@ completed before using ~:ensure~ keyword.
         (require 'ivy))))
 #+END_SRC
 *** :config keyword
+:PROPERTIES:
+:ID:       390B5A74-6FD1-45AF-809B-AF8ACD35D40D
+:END:
 ~:config~ keyword expect sexp will evaluated after ~require~ package.
 
 #+BEGIN_SRC emacs-lisp
@@ -522,7 +590,13 @@ completed before using ~:ensure~ keyword.
           (setq bar4 'baz)))))
 #+END_SRC
 ** Condition keywords
+:PROPERTIES:
+:ID:       601B40F8-E41C-4DF2-94E0-22059D2F0AEE
+:END:
 *** :disabled keyword
+:PROPERTIES:
+:ID:       FB78E91B-A83E-4435-98A5-06A88BD2B58D
+:END:
 ~:disabled~ keyword expect boolean.
 
 If you put ~:disabled t~ keyword, that ~leaf~ block just converting to nil.
@@ -573,6 +647,9 @@ Ignore the specification of ~:disabled~ by setting ~t~ to ~nil~.
 #+end_src
 
 *** :if, :when, :unless keyword
+:PROPERTIES:
+:ID:       19A9FBE7-3F00-4CDF-A3DA-73B7140EC566
+:END:
 ~:if~, ~:when~, ~:unless~ keywords expect sexp return boolean or just boolean value
 and wrap converted sexp specified function.
 
@@ -635,7 +712,13 @@ If specified multiple those keywords, evaluate sexp in ~and~.
 #+end_src
 
 ** Byte compile keywords
-*** :byte-compile-funcs, vars keywords
+:PROPERTIES:
+:ID:       FCA0C2E6-21C6-475C-AEA7-272649A21CE0
+:END:
+*** :byte-compile-funcs, :byte-compile-vars keyword
+:PROPERTIES:
+:ID:       2889E811-A291-47F7-B714-FABE4034D240
+:END:
 ~:byte-compile-funcs~ and ~:byte-compile-vars~ to tell bytecompiler.
 
 #+BEGIN_SRC emacs-lisp
@@ -664,6 +747,9 @@ If specified multiple those keywords, evaluate sexp in ~and~.
 #+END_SRC
 
 ** Documentation keywords
+:PROPERTIES:
+:ID:       AEB3D9C7-C27A-4C0D-B7CA-8E3929A18C46
+:END:
 ~leaf.el~ can describe a document with an affinity grammar.
 By default, ~:doc~, ~:file~, ~:url~ keywords are provided.
 
@@ -706,17 +792,29 @@ If you want other keywords, you can easily add them. (see source)
 #+END_SRC
 
 * Developer information
+:PROPERTIES:
+:ID:       091E1E16-C805-4EFC-B3DF-8CFFEF262016
+:END:
 ~leaf.el~ creates the intended elisp code from DSL with a simple mechanism.
 
 It is clear what internal conversion is done and it is also easy to customize it.
 ** leaf.el mechanism
+:PROPERTIES:
+:ID:       ECE81F64-86A4-41E2-921B-7BC8C0088C04
+:END:
 *** ~leaf (name &rest args)~ macro
+:PROPERTIES:
+:ID:       BC5DC943-58E0-40DC-9CF5-43521E990E7C
+:END:
 This is ~leaf.el~ frontend macro. Users use only this macro.
 
 Process.
 1. Pass arguments to ~leaf-core~.
 
 *** ~leaf-core (name args)~ function
+:PROPERTIES:
+:ID:       95158ACD-2622-4DC4-804D-366CC1DE240C
+:END:
 This is the core process for leaf macro expansion.
 
 Process.
@@ -726,6 +824,9 @@ Process.
 4. pass NAME and ARGS to ~leaf-process-keywords~
 
 **** ~leaf-append-defaults (plist)~ function
+:PROPERTIES:
+:ID:       6A42C4A3-DD34-45A8-9D6D-D51985000CAC
+:END:
 Append leaf default values to PLIST.
 See ~leaf-defaults~. You can customize this value.
 
@@ -739,6 +840,9 @@ EXAMPLE:
 #+END_SRC
 
 **** ~leaf-normalize-plist (plsit mergep)~ function
+:PROPERTIES:
+:ID:       ADCDCD51-44E1-4D1B-AE7F-EA04743EFD25
+:END:
 Given a pseudo-PLIST, return PLIST,
 if MERGEP is t, return well-formed PLIST.
 
@@ -763,6 +867,9 @@ EXAMPLE:
 #+END_SRC
 
 **** ~leaf-sort-values-plist (plist)~ function
+:PROPERTIES:
+:ID:       A875F061-194B-4CAC-B124-923533DC6529
+:END:
 Given a list-valued PLIST, return sorted-list PLIST by order ~leaf-keywords~.
 
 EXAMPLE:
@@ -773,12 +880,18 @@ EXAMPLE:
      :config (message "a"))
 
 *** ~leaf-pcocess-keywords (name plist)~ function
+:PROPERTIES:
+:ID:       F4C1ECC9-1004-471F-8C82-BB33A21A0863
+:END:
 Process keywords for NAME.
 The KEY and VALUE are taken from the PLIST and pass to the handler.
 
 The handler is named leaf-handler/KEY.
 
 ** Adding custom keyword(s)
+:PROPERTIES:
+:ID:       7CFD0D29-9E59-4726-B8BC-17A8042075BC
+:END:
 ~leaf.el~ can easily be expanded by adding keywords.
 
 Actually, it is realized by two steps of adding keyword and adding handler.
@@ -827,6 +940,9 @@ Example:
 #+END_SRC
 
 *** Add keyword(s)
+:PROPERTIES:
+:ID:       1C8BA8F9-AF24-490B-9E36-8D0985014D12
+:END:
 The keyword has an appropriate place in ~leaf-keywords~.
 
 Because the keywords are sorted in order of ~leaf-keywords~,
@@ -848,6 +964,9 @@ You can add keywords like,
 ~(leaf-add-keyword-list-after '(:tmp-pre :tmp-post) :config)~
 
 *** Define handler
+:PROPERTIES:
+:ID:       F2358E14-FC68-4E06-9B19-781C0A8B7766
+:END:
 Then, you should define a handler for new keyword(s) each.
 
 NOTE: Since VALUE is a list, be careful when implementing a handler.
@@ -873,9 +992,15 @@ NOTE: Since VALUE is a list, be careful when implementing a handler.
       `(,@value ,@body)))
 #+END_SRC
 * Why We support Emacs-22?
+:PROPERTIES:
+:ID:       773EEC5D-AE59-4BD9-ABC9-BE3540BAD0DC
+:END:
 Bundling Emacs-22.1 on macOS 10.13 (High Sierra), we support this.
 
 * Welcome PR
+:PROPERTIES:
+:ID:       472A6387-7B54-4ED4-8C39-21E291C7D990
+:END:
 We welcome PR!
 Travis Cl test ~leaf-test.el~ with all Emacs version 23 or above.
 
@@ -884,6 +1009,9 @@ so I think that it is good to throw PR and test Travis for the time being!
 Feel free throw PR!
 
 * Special Thanks
+:PROPERTIES:
+:ID:       16502214-F943-4A31-ABB4-217AC14FCE53
+:END:
 Advice and comments given by [[http://emacs-jp.github.io/][Emacs-JP]]'s forum member has been a great help
 in developing ~leaf.el~.
 
